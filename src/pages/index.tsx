@@ -1,11 +1,11 @@
 import Axios from "axios";
-import fs from "fs";
 import { useEffect, useState } from "react";
 import { Forecast, Error, Current } from "../../utils/types/index";
 import Card from "components/Card";
 import { GrLocation } from "react-icons/gr";
 import { RiCelsiusLine } from "react-icons/ri";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
+import Image from "next/image";
 
 export default function Home() {
       const [search, setSearch] = useState("");
@@ -21,24 +21,26 @@ export default function Home() {
                   setUnit("c");
                   localStorage.setItem("unit", "c");
             }
+            getCurrentData();
       }, []);
 
       const getCurrentData = async () => {
             // http://api.weatherapi.com/v1/current.json?key=1add81b5910249f9b32180547231602&q=Asia/Calcutta&aqi=no
             setLoading(true);
             const tem = await Axios.get(
-                  `http://api.weatherapi.com/v1/current.json`,
+                  `http://api.weatherapi.com/v1/forecast.json`,
                   {
                         params: {
                               key: "1add81b5910249f9b32180547231602",
                               q: Intl.DateTimeFormat().resolvedOptions()
                                     .timeZone,
-                              aqi: "no",
+                              days: 10,
                         },
                   }
             )
                   .then((response: { data: Current }) => {
                         setCurrent(response.data);
+                        setData(response.data);
                   })
                   .catch((error) => {
                         console.log(error);
@@ -131,6 +133,24 @@ export default function Home() {
                                                 </span>
                                           </div>
                                           <input
+                                                onChange={(e) =>
+                                                      setSearch(e.target.value)
+                                                }
+                                                value={search}
+                                                onKeyPress={(e) => {
+                                                      if (e.key == "Enter") {
+                                                            if (search != "") {
+                                                                  getPlaceData(
+                                                                        search
+                                                                  );
+                                                                  setSearch("");
+                                                            } else {
+                                                                  alert(
+                                                                        "Please enter a city name"
+                                                                  );
+                                                            }
+                                                      }
+                                                }}
                                                 type="text"
                                                 id="search-navbar"
                                                 className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -191,7 +211,12 @@ export default function Home() {
                                     </div>
                                     <ul className="flex  flex-col p-2 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                           <li className="cursor-pointer mt-2">
-                                                <GrLocation size={"24"} />
+                                                <GrLocation
+                                                      onClick={() =>
+                                                            getCurrentData()
+                                                      }
+                                                      size={"24"}
+                                                />
                                           </li>
                                           <li className="cursor-pointer mt-2">
                                                 {unit === "f" ? (
@@ -222,7 +247,7 @@ export default function Home() {
                               </div>
                         </div>
                   </nav>
-                  <Card />
+                  <Card data={[data]} />
             </div>
       );
 }
