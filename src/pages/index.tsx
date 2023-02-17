@@ -5,6 +5,8 @@ import Card from "components/Card";
 import { GrLocation } from "react-icons/gr";
 import { RiCelsiusLine } from "react-icons/ri";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 
 export default function Home() {
@@ -53,9 +55,23 @@ export default function Home() {
                         setCurrent(response.data);
                         setData(response.data);
                   })
-                  .catch((error) => {
-                        console.log(error);
-                        alert(JSON.stringify(error));
+                  .catch((error:Error) => {
+                        console.log(error.message);
+                        // alert(JSON.stringify(error));
+                        toast.error(error.message,   {
+                              position: "bottom-center",
+                              autoClose: 5000,
+                              hideProgressBar:
+                                    false,
+                              closeOnClick:
+                                    true,
+                              pauseOnHover:
+                                    true,
+                              draggable:
+                                    true,
+                              progress: undefined,
+                              theme: "dark",
+                        });
                   });
             console.log(current);
             setLoading(false);
@@ -81,9 +97,19 @@ export default function Home() {
                         console.log(response.data);
                   })
                   .catch(function (error: Error) {
-                        console.error(error);
-                        alert(JSON.stringify(error));
+                        console.error(error.message);
+                        // alert(JSON.stringify(error));
                         // error;
+                        toast.error(error.message, {
+                              position: "bottom-center",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                        });
                   });
             setLoading(false);
       };
@@ -137,9 +163,24 @@ export default function Home() {
                                                                   );
                                                                   setSearch("");
                                                             } else {
-                                                                  alert(
-                                                                        "Please enter a city name"
+                                                                  toast.error(
+                                                                        "Please enter the city name",
+                                                                        {
+                                                                              position: "top-right",
+                                                                              autoClose: 5000,
+                                                                              hideProgressBar:
+                                                                                    false,
+                                                                              closeOnClick:
+                                                                                    true,
+                                                                              pauseOnHover:
+                                                                                    true,
+                                                                              draggable:
+                                                                                    true,
+                                                                              progress: undefined,
+                                                                              theme: "dark",
+                                                                        }
                                                                   );
+                                                                  // alert();
                                                             }
                                                       }
                                                 }}
@@ -193,6 +234,18 @@ export default function Home() {
                         </div>
                   </nav>
                   <Card data={[data]} />
+                  <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                  />
             </div>
       );
 }
