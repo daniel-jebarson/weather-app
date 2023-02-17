@@ -207,7 +207,16 @@ const Card: React.FC<CardType> = ({ data }) => {
 
                                                 {/* lollll */}
                                                 {show === true ? (
-                                                      ""
+                                                      <button
+                                                            onClick={() => {
+                                                                  setShow(
+                                                                        false
+                                                                  );
+                                                            }}
+                                                            className="cursor-pointer"
+                                                      >
+                                                            Show Less...
+                                                      </button>
                                                 ) : (
                                                       <button
                                                             onClick={() => {
