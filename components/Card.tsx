@@ -18,7 +18,6 @@ const Card: React.FC<CardType> = ({ data }) => {
                                           <div className="px-6 py-6 relative">
                                                 <div className="flex mb-4 justify-between items-center">
                                                       <div>
-                                                         
                                                             <h5 className="mb-0 font-medium text-xl">
                                                                   {
                                                                         data[0]

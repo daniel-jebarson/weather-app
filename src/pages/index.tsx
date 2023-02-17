@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import { Forecast, Error, Current } from "../../utils/types/index";
+import { Forecast, Error, Current,SearchData } from "../../utils/types/index";
 import Card from "components/Card";
 import { GrLocation } from "react-icons/gr";
 import { RiCelsiusLine } from "react-icons/ri";
@@ -9,11 +9,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 
+
 export default function Home() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState({});
   const [current, setCurrent] = useState({});
   const [loading, setLoading] = useState(false);
+  const[place,setPlaces]=useState([])
   const [unit, setUnit] = useState("c"); //c for deg c
 
   //       "id": 1269495,
@@ -35,8 +37,37 @@ export default function Home() {
   }, []);
 
 
-  const getSearchData=async()=>{
-      
+  const getSearchData=async(searchQuery:string)=>{
+    setLoading(true);
+    const tem = await Axios.get(`https://api.weatherapi.com/v1/search.json`, {
+      params: {
+        key: "1add81b5910249f9b32180547231602",
+        q: searchQuery
+      },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then(function (response: { data: [SearchData] }) {
+        setPlaces(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error: Error) {
+        console.error(error.message);
+        // alert(JSON.stringify(error));
+        // error;
+        toast.error(error.message, {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      });
+    setLoading(false);
   }
 
   const getCurrentData = async () => {
@@ -148,7 +179,8 @@ export default function Home() {
                 onKeyPress={(e) => {
                   if (e.key == "Enter") {
                     if (search != "") {
-                      getPlaceData(search);
+                      // getPlaceData(search);
+                      getSearchData(search);
                       setSearch("");
                     } else {
                       toast.error("Please enter the city name", {
@@ -171,9 +203,10 @@ export default function Home() {
                 placeholder="Search..."
               />
               <ul className="absolute w-full z-50 gap-1 flex flex-col bg-white rounded-b-md max-h-48 overflow-y-scroll scroll-smooth">
-{ Array(0).fill("dani").map((v:string,i:number)=>{
-      return (<li key={i} className="pl-12 border-md cursor-pointer py-1 hover:bg-black/20">
-      {v}
+{place.map((v:SearchData,i:number)=>{
+      return (<li onClick={()=>{getPlaceData(v.name);
+      setPlaces([])}} key={i} className="pl-12 border-md cursor-pointer py-1 hover:bg-black/20">
+      {v.name}
     </li>)
 })}
               </ul>
