@@ -18,21 +18,21 @@ const Card: React.FC<CardType> = ({ data }) => {
                                           <div className="px-6 py-6 relative">
                                                 <div className="flex mb-4 justify-between items-center">
                                                       <div>
-                                                            <h5 className="mb-0 font-medium text-xl">
+                                                            <h5 className="mb-0 font-extrabold text-xl">
                                                                   {
                                                                         data[0]
                                                                               .location
                                                                               .name
                                                                   }
                                                             </h5>
-                                                            <h6 className="mb-0">
+                                                            <h6 className="mb-0 font-medium">
                                                                   {
                                                                         data[0]
                                                                               .location
                                                                               .localtime
                                                                   }
                                                             </h6>
-                                                            <small>
+                                                            <small className="italic">
                                                                   {
                                                                         data[0]
                                                                               .current
@@ -40,6 +40,19 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                                               .text
                                                                   }
                                                             </small>
+                                                      </div>
+                                                      <div>
+                                                            <img
+                                                                  src={
+                                                                        "https://" +
+                                                                        data[0][
+                                                                              "current"
+                                                                        ].condition.icon.replace(
+                                                                              "//",
+                                                                              ""
+                                                                        )
+                                                                  }
+                                                            />
                                                       </div>
                                                       <div className="text-right">
                                                             <h3 className="font-bold text-4xl mb-0">
@@ -64,7 +77,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                 </div>
                                                 <div className="block sm:flex justify-between items-center flex-wrap">
                                                       <div className="w-full sm:w-1/2">
-                                                            <div className="flex mb-2 justify-between items-center">
+                                                            <div className="flex mb-2 justify-evenly items-center">
                                                                   <span>
                                                                         Visibility
                                                                   </span>
@@ -78,7 +91,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             </div>
                                                       </div>
                                                       <div className="w-full sm:w-1/2">
-                                                            <div className="flex mb-2 justify-between items-center">
+                                                            <div className="flex mb-2 justify-evenly items-center">
                                                                   <span>
                                                                         Feels
                                                                         like
@@ -102,7 +115,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             </div>
                                                       </div>
                                                       <div className="w-full sm:w-1/2">
-                                                            <div className="flex mb-2 justify-between items-center">
+                                                            <div className="flex mb-2 justify-evenly items-center">
                                                                   <span>
                                                                         Wind
                                                                   </span>
@@ -116,7 +129,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             </div>
                                                       </div>
                                                       <div className="w-full sm:w-1/2">
-                                                            <div className="flex mb-2 justify-between items-center">
+                                                            <div className="flex mb-2 justify-evenly items-center">
                                                                   <span>
                                                                         Pressure
                                                                   </span>
@@ -130,7 +143,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             </div>
                                                       </div>
                                                       <div className="w-full sm:w-1/2">
-                                                            <div className="flex mb-2 justify-between items-center">
+                                                            <div className="flex mb-2 justify-evenly items-center">
                                                                   <span>
                                                                         Humidity
                                                                   </span>
@@ -145,7 +158,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             </div>
                                                       </div>
                                                       <div className="w-full sm:w-1/2">
-                                                            <div className="flex mb-2 justify-between items-center">
+                                                            <div className="flex mb-2 justify-evenly items-center">
                                                                   <span>
                                                                         Country
                                                                   </span>
@@ -161,9 +174,9 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                       </div>
                                                 </div>
                                           </div>
-                                          <div className="divider table mx-2 text-center bg-transparent whitespace-nowrap">
+                                          <div className="divider table mx-6 text-center bg-transparent whitespace-nowrap">
                                                 <span className="inline-block px-3">
-                                                      <small className="font-bold  text-md">
+                                                      <small className="font-extrabold  text-xl">
                                                             Forecast
                                                       </small>
                                                 </span>
