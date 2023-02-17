@@ -14,10 +14,11 @@ const Card: React.FC<CardType> = ({ data }) => {
                   {data[0].hasOwnProperty("location") === true ? (
                         <div className="flex flex-wrap">
                               <div className="w-full   px-2">
-                                    <div className="bg-black motion-safe:animate-zoomy  text-white relative min-w-0 break-words rounded-xl  overflow-hidden shadow-md mb-4 w-full ">
+                                    <div className="bg-black/40 motion-safe:animate-zoomy  text-white relative min-w-0 break-words rounded-xl  overflow-hidden shadow-md mb-4 w-full ">
                                           <div className="px-6 py-6 relative">
                                                 <div className="flex mb-4 justify-between items-center">
                                                       <div>
+                                                         
                                                             <h5 className="mb-0 font-medium text-xl">
                                                                   {
                                                                         data[0]
