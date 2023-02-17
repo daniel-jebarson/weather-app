@@ -14,7 +14,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                   {data[0].hasOwnProperty("location") === true ? (
                         <div className="flex flex-wrap">
                               <div className="w-full   px-2">
-                                    <div className="bg-black  text-white relative min-w-0 break-words rounded-lg overflow-hidden shadow-sm mb-4 w-full bg-white dark:bg-gray">
+                                    <div className="bg-black  text-white relative min-w-0 break-words rounded-lg overflow-hidden shadow-sm mb-4 w-full ">
                                           <div className="px-6 py-6 relative">
                                                 <div className="flex mb-4 justify-between items-center">
                                                       <div>
