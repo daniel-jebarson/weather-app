@@ -28,7 +28,7 @@ export default function Home() {
             // http://api.weatherapi.com/v1/current.json?key=1add81b5910249f9b32180547231602&q=Asia/Calcutta&aqi=no
             setLoading(true);
             const tem = await Axios.get(
-                  `http://api.weatherapi.com/v1/forecast.json`,
+                  `https://api.weatherapi.com/v1/forecast.json`,
                   {
                         params: {
                               key: "1add81b5910249f9b32180547231602",
@@ -53,7 +53,7 @@ export default function Home() {
       const getPlaceData = async (searchQuery: string) => {
             setLoading(true);
             const tem = await Axios.get(
-                  `http://api.weatherapi.com/v1/forecast.json`,
+                  `https://api.weatherapi.com/v1/forecast.json`,
                   {
                         params: {
                               key: "1add81b5910249f9b32180547231602",
