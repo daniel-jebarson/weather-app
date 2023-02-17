@@ -169,7 +169,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                 </span>
                                           </div>
                                           <div className="px-6 py-6 relative">
-                                                <div className="text-center gap-5 flex-wrap  justify-center items-center flex">
+                                                <div className="text-center flex-wrap    sm:gap-3 md:gap-4 lg:gap-7 lg:px-9 lg:py-6    justify-center items-center flex md:grid md:grid-cols-5">
                                                       {data[0].forecast.forecastday.map(
                                                             (
                                                                   v: Sundata,
@@ -177,7 +177,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             ) => {
                                                                   if (i < 5) {
                                                                         return (
-                                                                              <div className="flex flex-wrap">
+                                                                              <div className="flex  flex-wrap sm:p-5 ">
                                                                                     <SmallGroup
                                                                                           data={
                                                                                                 v
@@ -192,7 +192,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                                               true
                                                                   ) {
                                                                         return (
-                                                                              <div>
+                                                                              <div className="flex  flex-wrap sm:p-5 ">
                                                                                     <SmallGroup
                                                                                           data={
                                                                                                 v

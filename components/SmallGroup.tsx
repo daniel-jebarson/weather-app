@@ -18,8 +18,8 @@ import Image from "next/image";
 
 const SmallGroup: React.FC<Small> = ({ data }) => {
       return (
-            <div className="text-center  mb-0 flex items-center justify-center flex-col">
-                  <span className="block my-1 text-center">
+            <div className="text-center   mb-0 flex items-center justify-center flex-col">
+                  <span className="block justify-center  my-1 text-center">
                         {data["day"].condition.text}
                   </span>
                   {/* {data["day"].condition.icon.replace("//", "")} */}
