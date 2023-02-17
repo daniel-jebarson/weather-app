@@ -14,6 +14,14 @@ export default function Home() {
       const [loading, setLoading] = useState(false);
       const [unit, setUnit] = useState("c"); //c for deg c
 
+      //       "id": 1269495,
+      // "name": "Lond",
+      // "region": "Sudur-Mulasysla",
+      // "country": "Iceland",
+      // "lat": 64.83,
+      // "lon": -13.83,
+      // "url": "lond-sudur-mulasysla-iceland"
+
       useEffect(() => {
             if (localStorage.getItem("unit") === "f") {
                   setUnit("f");

@@ -10,7 +10,7 @@ const Card: React.FC<CardType> = ({ data }) => {
       const [show, setShow] = useState(false);
 
       return (
-            <div className="mx-auto p-4 bg-blue-light h-screen flex justify-center">
+            <div className="mx-auto p-4 bg-blue-light min-h-screen flex justify-center">
                   {data[0].hasOwnProperty("location") === true ? (
                         <div className="flex flex-wrap">
                               <div className="w-full   px-2">
@@ -169,7 +169,7 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                 </span>
                                           </div>
                                           <div className="px-6 py-6 relative">
-                                                <div className="text-center justify-between items-center flex">
+                                                <div className="text-center gap-5 flex-wrap  justify-center items-center flex">
                                                       {data[0].forecast.forecastday.map(
                                                             (
                                                                   v: Sundata,
@@ -177,11 +177,28 @@ const Card: React.FC<CardType> = ({ data }) => {
                                                             ) => {
                                                                   if (i < 5) {
                                                                         return (
-                                                                              <SmallGroup
-                                                                                    data={
-                                                                                          v
-                                                                                    }
-                                                                              />
+                                                                              <div className="flex flex-wrap">
+                                                                                    <SmallGroup
+                                                                                          data={
+                                                                                                v
+                                                                                          }
+                                                                                    />
+                                                                              </div>
+                                                                        );
+                                                                  } else if (
+                                                                        i >=
+                                                                              5 &&
+                                                                        show ===
+                                                                              true
+                                                                  ) {
+                                                                        return (
+                                                                              <div>
+                                                                                    <SmallGroup
+                                                                                          data={
+                                                                                                v
+                                                                                          }
+                                                                                    />
+                                                                              </div>
                                                                         );
                                                                   }
                                                             }
@@ -190,27 +207,7 @@ const Card: React.FC<CardType> = ({ data }) => {
 
                                                 {/* lollll */}
                                                 {show === true ? (
-                                                      <div className="text-center justify-between items-center flex p-4">
-                                                            {data[0].forecast.forecastday.map(
-                                                                  (
-                                                                        v: Sundata,
-                                                                        i: number
-                                                                  ) => {
-                                                                        if (
-                                                                              i >=
-                                                                              5
-                                                                        ) {
-                                                                              return (
-                                                                                    <SmallGroup
-                                                                                          data={
-                                                                                                v
-                                                                                          }
-                                                                                    />
-                                                                              );
-                                                                        }
-                                                                  }
-                                                            )}{" "}
-                                                      </div>
+                                                      ""
                                                 ) : (
                                                       <button
                                                             onClick={() => {
