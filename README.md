@@ -2,7 +2,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First clone:
+
+```
+git clone https://github.com/daniel-jebarson/weather-app.git
+
+```
+Then install packages:
+
+```bash
+
+npm install
+
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
